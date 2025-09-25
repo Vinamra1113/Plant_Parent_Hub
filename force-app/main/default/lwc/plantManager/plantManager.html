@@ -1,0 +1,55 @@
+<template>
+    <lightning-card title="Plant Parent Hub" icon-name="custom:custom18">
+        <!-- Header Actions -->
+        <lightning-button
+            label="Add New Plant"
+            slot="actions"
+            icon-name="utility:add"
+            onclick={handleAddNewPlant}>
+        </lightning-button>
+
+        <!-- Main Body -->
+        <div class="slds-p-around_medium">
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-p-around_large">
+                    <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Error Panel -->
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_medium">
+                    <p>Error loading plants: {errorText}</p>
+                </div>
+            </template>
+            
+            <!-- 
+                This template ONLY renders the gallery if we are NOT loading and
+                we have successfully received plant data.
+            -->
+            <template if:true={hasData}>
+                <c-plant-gallery
+                    plants={plants}
+                    onplantselect={handlePlantSelect}>
+                </c-plant-gallery>
+            </template>
+        </div>
+
+        <!-- 
+            We include our modal components here. They will be hidden by default
+            and will be shown/hidden by this manager component.
+        -->
+        <c-plant-detail-viewer
+            plant={selectedPlant}
+            onclosemodal={handleCloseDetailModal}
+            oneditplant={handleEditPlant}
+            ondeleteplant={handleDeletePlant}>
+        </c-plant-detail-viewer>
+
+        <c-plant-editor
+            onsave={handleSave}>
+        </c-plant-editor>
+
+    </lightning-card>
+</template>

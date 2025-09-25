@@ -1,0 +1,9 @@
+.plant-image {
+    width: 100%;
+    padding-bottom: 100%; /* Creates a 1:1 square aspect ratio */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: .25rem; /* SLDS Border Radius */
+    background-color: #f3f2f2; /* Fallback color */
+}

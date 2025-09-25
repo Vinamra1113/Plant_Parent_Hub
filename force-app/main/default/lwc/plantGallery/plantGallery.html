@@ -1,0 +1,55 @@
+<template>
+    <lightning-card title="My Plant Collection" icon-name="custom:custom18">
+        <div class="slds-p-around_medium">
+            <!-- Search Bar -->
+            <lightning-input
+                label="Search Plants"
+                type="search"
+                onchange={handleSearchChange}
+                value={searchTerm}
+                variant="label-hidden"
+                placeholder="Search by name or species..."
+            ></lightning-input>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-around_large">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error Panel -->
+        <template if:true={error}>
+            <div class="slds-p-around_medium">
+                <p class="slds-text-color_error">An error occurred while loading plants: {errorText}</p>
+            </div>
+        </template>
+
+        <!-- Plant Tile Grid -->
+        <template if:false={isLoading}>
+            <div class="slds-p-around_medium slds-grid slds-wrap slds-gutters">
+                <template for:each={filteredPlants} for:item="plant">
+                    <!-- 
+                        This is where we use our child component 'c-plant-tile'.
+                        - The 'key' is required for loops for performance.
+                        - The 'plant' attribute passes the plant data down to the tile.
+                        - 'onplantselect' listens for the custom event from the tile.
+                    -->
+                    <div key={plant.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-bottom_medium">
+                        <c-plant-tile
+                            plant={plant}
+                            onplantselect={handlePlantSelect}
+                        ></c-plant-tile>
+                    </div>
+                </template>
+            </div>
+             <!-- Message when no plants are found -->
+             <template if:true={noPlantsFound}>
+                <div class="slds-align_absolute-center slds-p-around_large">
+                    <p>No plants found. Try adjusting your search.</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,70 @@
+<template>
+    <!-- We only render the modal if a plant record has been passed in -->
+    <template if:true={plant}>
+        <!-- Modal Backdrop -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+        <!-- Modal Container -->
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large" aria-labelledby="modal-heading-01" aria-modal="true">
+            <div class="slds-modal__container">
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleClose}>
+                        <lightning-icon icon-name="utility:close" alternative-text="Close" variant="inverse" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{plant.Name}</h2>
+                    <p class="slds-m-top_x-small">{plant.Species__c}</p>
+                </header>
+
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- Left Column: Image -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <div class="plant-image" style={imageStyle}></div>
+                        </div>
+
+                        <!-- Right Column: Details -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                            <p class="slds-p-bottom_small">{plant.Description__c}</p>
+                            <lightning-layout multiple-rows>
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <span class="slds-form-element__label">Location</span>
+                                    <p class="slds-text-body_regular">{plant.Location__c}</p>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <span class="slds-form-element__label">Sunlight Needs</span>
+                                    <p class="slds-text-body_regular">{plant.Sunlight_Needs__c}</p>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <span class="slds-form-element__label">Next Watering</span>
+                                    <p class="slds-text-body_regular">
+                                        <lightning-formatted-date-time value={plant.Next_Watering_Date__c} year="numeric" month="long" day="2-digit"></lightning-formatted-date-time>
+                                    </p>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <span class="slds-form-element__label">Date Acquired</span>
+                                    <p class="slds-text-body_regular">
+                                        <lightning-formatted-date-time value={plant.Date_Acquired__c} year="numeric" month="long" day="2-digit"></lightning-formatted-date-time>
+                                    </p>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </div>
+                    
+                    <!-- Care Log List Component -->
+                    <div class="slds-border_top slds-m-top_medium">
+                        <c-care-log-list record-id={plant.Id}></c-care-log-list>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={handleDelete}>Delete</button>
+                    <button class="slds-button slds-button_brand" onclick={handleEdit}>Edit</button>
+                </footer>
+            </div>
+        </section>
+    </template>
+</template>

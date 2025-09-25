@@ -1,0 +1,55 @@
+<template>
+    <div class="slds-p-around_medium slds-theme_default">
+        <h3 class="slds-text-heading_medium slds-m-bottom_medium">Care History</h3>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-m-vertical_large">
+                <lightning-spinner alternative-text="Loading history..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error Panel -->
+        <template if:true={error}>
+            <p class="slds-text-color_error">An error occurred while loading care history.</p>
+        </template>
+        
+        <!-- Main Content -->
+        <template if:false={isLoading}>
+            <!-- Empty State Message -->
+            <template if:true={noLogsFound}>
+                <div class="slds-align_absolute-center slds-text-color_weak slds-p-vertical_large">
+                    <p>No care history has been logged for this plant yet.</p>
+                </div>
+            </template>
+
+            <!-- List of Care Logs -->
+            <ul class="slds-list_vertical slds-has-dividers_bottom-space">
+                <template for:each={careLogs} for:item="log">
+                    <li key={log.Id} class="slds-item slds-p-vertical_small">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <span class="slds-text-title_bold">{log.Action_Taken__c}</span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-text-align_right-medium">
+                                <lightning-formatted-date-time
+                                    value={log.Log_Date__c}
+                                    year="numeric"
+                                    month="short"
+                                    day="2-digit"
+                                    hour="2-digit"
+                                    minute="2-digit"
+                                ></lightning-formatted-date-time>
+                            </div>
+                            <template if:true={log.Notes__c}>
+                                <div class="slds-col slds-size_1-of-1 slds-p-top_x-small">
+                                    <p class="slds-text-body_small">{log.Notes__c}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </div>
+</template>

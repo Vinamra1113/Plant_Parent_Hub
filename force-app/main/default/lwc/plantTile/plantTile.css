@@ -1,0 +1,44 @@
+.plant-tile {
+    cursor: pointer;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.plant-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* SLDS Shadow */
+}
+
+.tile-image {
+    width: 100%;
+    padding-bottom: 66.66%; /* Creates a 3:2 aspect ratio */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    background-color: #f3f2f2; /* Fallback color */
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.status-ok {
+    background-color: #2e844a; /* SLDS Success Green */
+}
+
+.status-due {
+    background-color: #ffb75d; /* SLDS Warning Orange */
+}
+
+.status-overdue {
+    background-color: #c23934; /* SLDS Error Red */
+}
+
+.status-unknown {
+    background-color: #706e6b; /* SLDS Neutral Gray */
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sunlight_Needs__c</fullName>
+    <externalId>false</externalId>
+    <label>Sunlight Needs</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Low Light</fullName>
+                <default>false</default>
+                <label>Low Light</label>
+            </value>
+            <value>
+                <fullName>Indirect Sunlight</fullName>
+                <default>false</default>
+                <label>Indirect Sunlight</label>
+            </value>
+            <value>
+                <fullName>Direct Sunlight</fullName>
+                <default>false</default>
+                <label>Direct Sunlight</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

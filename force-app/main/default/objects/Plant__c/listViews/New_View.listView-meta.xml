@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_View</fullName>
+    <columns>NAME</columns>
+    <columns>Species__c</columns>
+    <columns>Location__c</columns>
+    <columns>Date_Acquired__c</columns>
+    <columns>Last_Watered_Date__c</columns>
+    <columns>Next_Watering_Date__c</columns>
+    <columns>Water_Frequency_Days__c</columns>
+    <columns>Sunlight_Needs__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>New View</label>
+</ListView>

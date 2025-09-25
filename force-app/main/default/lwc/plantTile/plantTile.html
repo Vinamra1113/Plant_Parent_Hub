@@ -1,0 +1,26 @@
+<template>
+    <!-- 
+      This is the key to fixing the error. 
+      The content inside this template will ONLY be rendered if the 'plant' property has data.
+      This prevents the "Cannot read properties of undefined" error.
+    -->
+    <template if:true={plant}>
+        <div class="plant-tile slds-box slds-box_x-small slds-theme_default" onclick={handleClick}>
+            <!-- Plant Image Section -->
+            <div class="slds-media__figure">
+                <div class="tile-image" style={imageStyle}></div>
+            </div>
+
+            <!-- Plant Details Section -->
+            <div class="slds-media__body slds-p-top_small">
+                <h3 class="slds-text-heading_small slds-truncate" title={plant.Name}>{plant.Name}</h3>
+                
+                <!-- Watering Status Indicator -->
+                <div class="slds-p-top_x-small slds-grid slds-grid_vertical-align-center">
+                    <span class={wateringStatusClass}></span>
+                    <span class="slds-text-body_small slds-p-left_x-small">{wateringStatusText}</span>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

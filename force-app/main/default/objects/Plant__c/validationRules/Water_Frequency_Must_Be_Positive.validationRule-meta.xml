@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Water_Frequency_Must_Be_Positive</fullName>
+    <active>true</active>
+    <errorConditionFormula>Water_Frequency_Days__c &lt;= 0</errorConditionFormula>
+    <errorDisplayField>Water_Frequency_Days__c</errorDisplayField>
+    <errorMessage>The water frequency must be a positive number (e.g., 1 or greater).</errorMessage>
+</ValidationRule>
